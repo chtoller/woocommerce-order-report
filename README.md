@@ -22,15 +22,17 @@ In functions.php:
 // ### actual query function
 function order_report_function() {
   // open output file for writing
+  $hasPosts = true;
+  $paged = 0;
   do {
     $query = new WC_Order_Query( array(
 			'limit' => 100,
 			'paged' => $paged,
 			'page' => $paged,
 			'return' => 'ids',
-      // plus other criteria
-		));
-		$orders = $query->get_orders();
+    			// plus other criteria
+      			));
+    $orders = $query->get_orders();
     if(count($orders)) {
       foreach ( $orders as $id ) {
         // do something with each order (like write a line to the output file)
